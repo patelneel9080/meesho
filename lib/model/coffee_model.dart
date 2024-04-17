@@ -12,24 +12,24 @@ class Coffee {
 
 List<Coffee> cof = [
   Coffee(
-    image: 'assets/Images/coffeecup.webp',
+    image: 'assets/Images/coffee_cup_bkg.png',
     name: 'Espresso',
     price: 2.99,
   ),
   Coffee(
-    image: 'assets/Images/coffeecup.webp',
+    image: 'assets/Images/coffee_cup_bkg.png',
     name: 'Latte',
     price: 3.99,),
   Coffee(
-    image: 'assets/Images/coffeecup.webp',
+    image: 'assets/Images/coffee_cup_bkg.png',
     name: 'Latte',
     price: 3.99,),
   Coffee(
-    image: 'assets/Images/coffeecup.webp',
+    image: 'assets/Images/coffee_cup_bkg.png',
     name: 'Latte',
     price: 3.99,),
   Coffee(
-    image: 'assets/Images/coffeecup.webp',
+    image: 'assets/Images/coffee_cup_bkg.png',
     name: 'Latte',
     price: 3.99,),
 ];

@@ -48,6 +48,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
               ],
             ),
           )),
+
     );
   }
 }

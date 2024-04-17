@@ -1,6 +1,6 @@
 import 'package:caferia/screens/Navigation_Pages/cart_screen.dart';
 import 'package:caferia/screens/Navigation_Pages/favourite_screen.dart';
-import 'package:caferia/screens/Navigation_Pages/homescreen.dart';
+import 'package:caferia/screens/Navigation_Pages/home_view/homescreen.dart';
 import 'package:caferia/screens/Navigation_Pages/menuscreen.dart';
 import 'package:caferia/screens/Navigation_Pages/profile_screen.dart';
 import 'package:flutter/material.dart';

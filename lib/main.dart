@@ -1,4 +1,5 @@
 import 'package:caferia/screens/Login%20Method/Login_method.dart';
+import 'package:caferia/screens/Navigation_Pages/navigated_screen.dart';
 import 'package:caferia/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Musify',
       darkTheme: ThemeData.dark(useMaterial3: true),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: Navigated_Screen(),
     );
   }
 }

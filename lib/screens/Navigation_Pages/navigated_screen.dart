@@ -1,3 +1,8 @@
+import 'package:caferia/screens/Navigation_Pages/cart_screen.dart';
+import 'package:caferia/screens/Navigation_Pages/favourite_screen.dart';
+import 'package:caferia/screens/Navigation_Pages/homescreen.dart';
+import 'package:caferia/screens/Navigation_Pages/menuscreen.dart';
+import 'package:caferia/screens/Navigation_Pages/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class Navigated_Screen extends StatefulWidget {
@@ -11,11 +16,11 @@ class _Navigated_ScreenState extends State<Navigated_Screen> {
 
   int activeindex = 0;
   final List<Widget> _pages =[
-    Text("fewf"),
-    Text("fewf"),
-    Text("fewf"),
-    Text("fewf"),
-    Text("fewf"),
+    HomeScreen(),
+    MenuScreen(),
+    FavouriteScreen(),
+    ProfileScreen(),
+    CartScreen(),
   ];
 
   Widget showScreens(int index){

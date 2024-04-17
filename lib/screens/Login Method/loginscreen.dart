@@ -21,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
+
       body: SizedBox(
         height: size.height,
         width: size.width,

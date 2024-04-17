@@ -19,6 +19,7 @@ class _LoginMethodState extends State<LoginMethod> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: PreferredSize(
             preferredSize: Size(size.width, size.height / 3.8),
             child: Stack(children: [

@@ -20,8 +20,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SizedBox(
         height: size.height,
         width: size.width,
@@ -173,6 +175,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   await SharedPreferences.getInstance();
                   pref.setString("userName", _userName.text);
                   userName = pref.getString("userName")!;
+                  pref.setString("userEmail", _email.text);
+                  userEmail = pref.getString("userEmail")!;
                   print(userName);
                 }
               },

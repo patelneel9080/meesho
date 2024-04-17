@@ -45,14 +45,14 @@ class _SplashScreenState extends State<SplashScreen> {
             Text(
               "Welcome to",
               style: TextStyle(
-                  color: Colors.white,
+                  color: Color(0xffFFF2E1),
                   fontSize: 45,
-                  fontWeight: FontWeight.w400),
+                  fontWeight: FontWeight.w500),
             ),
             Text(
               "Caferia",
               style: TextStyle(
-                  color: Colors.orange,
+                  color: Color(0xffFFF2E1),
                   fontSize: 50,
                   fontWeight: FontWeight.bold),
             ),
@@ -95,6 +95,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ],
         ),
       ),
+
     );
   }
 }

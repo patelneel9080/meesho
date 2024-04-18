@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../model/coffee_model.dart';
-import '../coffee_detailed_screen.dart';
+import '../coffee_detail/coffee_detailed_screen.dart';
 
 class ListViewCardWidget extends StatelessWidget {
   const ListViewCardWidget({

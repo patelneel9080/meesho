@@ -1,4 +1,4 @@
-import 'package:caferia/screens/Navigation_Pages/cart_screen.dart';
+import 'package:caferia/screens/Navigation_Pages/add_to_cart/cart_screen.dart';
 import 'package:caferia/screens/Navigation_Pages/favourite_screen.dart';
 import 'package:caferia/screens/Navigation_Pages/home_view/homescreen.dart';
 import 'package:caferia/screens/Navigation_Pages/menuscreen.dart';

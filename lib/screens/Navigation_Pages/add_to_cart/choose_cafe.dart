@@ -1,22 +1,23 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class FavouriteScreen extends StatefulWidget {
-  const FavouriteScreen({super.key});
+class ChooseYourCafe extends StatefulWidget {
+  const ChooseYourCafe({super.key});
 
   @override
-  State<FavouriteScreen> createState() => _FavouriteScreenState();
+  State<ChooseYourCafe> createState() => _ChooseYourCafeState();
 }
 
-class _FavouriteScreenState extends State<FavouriteScreen> {
+class _ChooseYourCafeState extends State<ChooseYourCafe> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size(size.width, size.height / 3.8),
+          preferredSize: Size(size.width, size.height / 4.8),
           child: Container(
             width: size.width,
-            height: size.height / 4.5,
+            height: size.height / 5.5,
             decoration: BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.only(
@@ -30,12 +31,15 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                IconButton(onPressed: () {
+                  Navigator.pop(context);
+                }, icon: Icon(CupertinoIcons.back,color: Color(0xffFFF2E1),size: 34,)),
                 SizedBox(width: size.width/14,),
                 Text(
-                  "Favourites",
+                  "Choose Your Cafe",
                   style: TextStyle(
                       color: Color(0xffFFF2E1),
-                      fontSize: 43,
+                      fontSize: 28,
                       fontWeight: FontWeight.w400),
                 ),
                 // Container(

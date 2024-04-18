@@ -1,4 +1,3 @@
-import 'package:caferia/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +9,15 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  bool _isExpand = false;
+  bool _isExpanded = false;
+  double _rating = 0;
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery
+        .of(context)
+        .size;
+    final ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size(size.width, size.height / 3.8),
@@ -54,44 +59,182 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Padding(
               padding: EdgeInsets.only(top: 150, left: 28),
               child: Container(
-                height: size.height/12,
-                width: size.width / 1.15,
-                decoration: BoxDecoration(
-                  color: Color(0xffEEE8F4),
-                  borderRadius: BorderRadius.circular(50)
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(width: size.width/14,),
-                    CircleAvatar(maxRadius: 26,
-                      backgroundImage: NetworkImage("https://www.renderhub.com/zcnaipowered/gallery/made-a-quick-profile-picture-using-a-i.jpg"),
-                    ),
-                    SizedBox(width: size.width/14,),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text("abc"),
-                        Text("abc"),
-                        // Text(userName),
-                        // Text(userEmail),
-                      ],
-                    ),
-                    SizedBox(width: size.width/2.8,),
-                    Card(
-                      color: Color(0xffE65836),
-                      shape: CircleBorder(),
-                      child: IconButton(onPressed: () {
+                  height: size.height/12,
+                  width: size.width / 1.15,
+                  decoration: BoxDecoration(
+                      color: Color(0xffEEE8F4),
+                      borderRadius: BorderRadius.circular(50)
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(width: size.width/14,),
+                      CircleAvatar(maxRadius: 26,
+                        backgroundImage: NetworkImage("https://www.renderhub.com/zcnaipowered/gallery/made-a-quick-profile-picture-using-a-i.jpg"),
+                      ),
+                      SizedBox(width: size.width/14,),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text("abc"),
+                          Text("abc"),
+                          // Text(userName),
+                          // Text(userEmail),
+                        ],
+                      ),
+                      SizedBox(width: size.width/2.8,),
+                      Card(
+                        color: Color(0xffE65836),
+                        shape: CircleBorder(),
+                        child: IconButton(onPressed: () {
 
-                      }, icon: Icon(CupertinoIcons.pencil,color: Colors.white,)),
-                    )
-                  ],
-                )
+                        }, icon: Icon(CupertinoIcons.pencil,color: Colors.white,)),
+                      )
+                    ],
+                  )
               ),
             )
           ])),
+      body: Padding(
+        padding: EdgeInsets.all(12),
+        child: ListView(
+          children: [
+            _buildRestaurantCard(),
+            _buildMenuCard(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRestaurantCard() {
+
+    return Card(
+      child: Column(
+        children: [
+          ListTile(
+            title: const Text('Account'),
+            onTap: () {
+              setState(() {
+                _isExpanded = !_isExpanded;
+              });
+            },
+          ),
+          if (_isExpanded)
+            const Column(
+              children: [
+                ListTile(
+                  leading: Icon(Icons.account_box),
+                  title: Text(
+                    'Account details',
+                    style:
+                    TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 18,
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(Icons.payment),
+                  title: Text(
+                    'Payment details',
+                    style:
+                    TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 18,
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(Icons.history),
+                  title: Text(
+                    'Order history',
+                    style:
+                    TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 18,
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(Icons.calendar_today_outlined),
+                  title: Text(
+                    'Rewards',
+                    style:
+                    TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 18,
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(Icons.discount_sharp),
+                  title: Text(
+                    'Student discount',
+                    style:
+                    TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 18,
+                  ),
+                ),
+              ],
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMenuCard() {
+    return Card(
+      child: Column(
+        children: [
+          ListTile(
+            title: const Text('Notification'),
+            onTap: () {
+              setState(() {
+                _isExpand = !_isExpand;
+              });
+            },
+          ),
+          if (_isExpand)
+            const Column(
+              children: [
+                ListTile(
+                  leading: Icon(Icons.account_box),
+                  title: Text(
+                    'Receive Notification',
+                    style:
+                    TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 18,
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(Icons.payment),
+                  title: Text(
+                    'Payment details',
+                    style:
+                    TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 18,
+                  ),
+                ),
+              ],
+            ),
+        ],
+      ),
     );
   }
 }

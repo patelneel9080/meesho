@@ -13,11 +13,13 @@ class SizeItem extends StatelessWidget {
     return GestureDetector(
       onTap: () => onTap(sizecof),
       child: Container(
+        height: size.height/20,
         width: size.width/3.5,
         alignment: Alignment.center,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           boxShadow: [
+            BoxShadow(color: Colors.black),
             BoxShadow(color: Colors.black),
           ],
           color: isSelected ? Color(0xffE65836) : Colors.white,

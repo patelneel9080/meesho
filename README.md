@@ -1,16 +1,28 @@
-# caferia
+# Simple Cafe Application
 
-A new Flutter project.
+Welcome to the Caferia Application.
 
-## Getting Started
+## Table of Contents
+- Features
+- Samples
+- Contribution
 
-This project is a starting point for a Flutter application.
+## Features
+- Search Cafe
+- Intuitive UI for ease of use.
 
-A few resources to get you started if this is your first Flutter project:
+### Pictures of application 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img src="https://github.com/patelneel9080/Caferia/assets/136300996/bc1f0f99-a445-4292-8f31-1d3cd8d6127f" width = "100%"/>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Demo
+Demo is ready after solving some errors...
+
+## Contribution
+We welcome all contributions. Here's how you can help:
+
+- Fork this repository.
+- Make your changes in your forked repo.
+- Submit a pull request here.
+
+

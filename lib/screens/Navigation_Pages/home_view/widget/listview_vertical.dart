@@ -1,5 +1,8 @@
+import 'package:caferia/screens/Navigation_Pages/add_to_cart/cart_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../cart_provider.dart';
 import '../../../../const.dart';
 import '../../../../model/coffee_model.dart';
 
@@ -14,6 +17,7 @@ class ListViewVerticalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
     return SizedBox(
       height: size.height,
       child: ListView.builder(
@@ -65,14 +69,15 @@ class ListViewVerticalWidget extends StatelessWidget {
                 const Spacer(),
                 GestureDetector(
                   onTap: () {
-                    // Call the function to add this coffee to favorites
-                  },
+                    final cartItem = Coffee(image: cof[index].image, name: cof[index].name, price: cof[index].price);
+                    cartProvider.addToCart(cartItem);
+                    },
                   child: SizedBox(
                     height: 40,
                     width: 40,
                     child: Card(
                       color: Color(0xffE65836),
-                      child: Icon(Icons.add),
+                      child: Icon(Icons.add,color: Colors.white,),
                     ),
                   ),
                 ),

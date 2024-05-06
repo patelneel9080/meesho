@@ -63,13 +63,11 @@ class _SplashScreenState extends State<SplashScreen> {
                   _expanded = true;
 
                 });
-                Timer(Duration(seconds: 2), () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => LoginMethod(),
                       ));
-                });
               },
               child: AnimatedContainer(
                 decoration: BoxDecoration(

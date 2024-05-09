@@ -1,11 +1,7 @@
-import 'model/coffee_model.dart';
+import 'package:caferia/homescreen.dart';
 
-String userName = '';
-String userEmail = '';
+int pageIndex = 0;
 
-List<Coffee> favoriteCoffees = [];
-
-void addToFavorites(Coffee coffee) {
-  favoriteCoffees.add(coffee);
-}
-
+final pages = [
+  HomeScreen(),
+];

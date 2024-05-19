@@ -1,3 +1,4 @@
+import 'package:caferia/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -67,24 +68,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      SizedBox(width: size.width/14,),
+
                       CircleAvatar(maxRadius: 26,
-                        backgroundImage: NetworkImage("https://www.renderhub.com/zcnaipowered/gallery/made-a-quick-profile-picture-using-a-i.jpg"),
+                      backgroundColor: Color(0xffE65836),
+                      //   backgroundImage: NetworkImage("https://www.renderhub.com/zcnaipowered/gallery/made-a-quick-profile-picture-using-a-i.jpg"),
+                      child: Icon(Icons.person,color: Colors.white,),
                       ),
-                      SizedBox(width: size.width/14,),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("abc"),
-                          Text("abc"),
+                          Text(userName,style: TextStyle(fontSize: 13),),
+                          Text(userEmail,style: TextStyle(fontSize: 13),),
                           // Text(userName),
                           // Text(userEmail),
                         ],
                       ),
-                      SizedBox(width: size.width/2.8,),
                       Card(
                         color: Color(0xffE65836),
                         shape: CircleBorder(),

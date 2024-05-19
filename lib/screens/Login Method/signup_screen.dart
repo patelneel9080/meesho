@@ -1,26 +1,41 @@
-import 'package:caferia/screens/Navigation_Pages/navigated_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../const.dart';
+import '../Navigation_Pages/navigated_screen.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignUpController extends GetxController {
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+  var error = RxString('');
 
-  @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  void signUp() async {
+    if (userNameController.text.isEmpty || passwordController.text.isEmpty) {
+      error.value = 'Please enter your name or email';
+    } else if (passwordController.text != confirmPasswordController.text) {
+      error.value = 'Passwords do not match';
+    } else {
+      error.value = '';
+      SharedPreferences pref =
+      await SharedPreferences.getInstance();
+      pref.setString("userName", userNameController.text);
+      userName = userNameController.text;
+      pref.setString("userEmail", emailController.text);
+      userEmail = emailController.text;
+      pref.setString("userPassword", passwordController.text);
+      Get.off(() => Navigated_Screen());
+    }
+  }
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
-  final TextEditingController _userName = TextEditingController();
-  final TextEditingController _email = TextEditingController();
-  final TextEditingController _password = TextEditingController();
-  String _error = '';
+class SignUpScreen extends StatelessWidget {
+  final SignUpController signUpController = Get.put(SignUpController());
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -30,13 +45,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: size.height/14,),
+            SizedBox(height: size.height / 14),
             SizedBox(
-              width: size.width/1.2,
+              width: size.width / 1.2,
               child: TextField(
+                controller: signUpController.userNameController,
                 onTap: () {},
                 cursorColor: Colors.black54,
-                controller: _userName,
                 style: const TextStyle(fontWeight: FontWeight.w400),
                 decoration: InputDecoration(
                   alignLabelWithHint: true,
@@ -45,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   labelStyle: const TextStyle(color: Color(0xffE65836)),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color:  Color(0xffE65836)),
+                    borderSide: const BorderSide(color: Color(0xffE65836)),
                   ),
                   hintText: 'Enter your name',
                   focusedBorder: OutlineInputBorder(
@@ -58,18 +73,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
             ),
-            // if (_error.isNotEmpty)
-            //   Text(
-            //     _error,
-            //     style: const TextStyle(color: Colors.red),
-            //   ),
+            SizedBox(height: size.height / 35),
             SizedBox(
-              height: size.height / 35,
-            ),
-            SizedBox(
-              width: size.width/1.2,
+              width: size.width / 1.2,
               child: TextField(
-                controller: _email,
+                controller: signUpController.emailController,
                 onTap: () {},
                 cursorColor: Colors.black54,
                 style: const TextStyle(fontWeight: FontWeight.w400),
@@ -77,7 +85,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   alignLabelWithHint: true,
                   border: InputBorder.none,
                   labelText: "Email Address",
-                  labelStyle: const TextStyle(color:  Color(0xffE65836)),
+                  labelStyle: const TextStyle(color: Color(0xffE65836)),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(color: Color(0xffE65836)),
@@ -85,7 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintText: 'Enter your email address',
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color:  Color(0xffE65836)),
+                    borderSide: const BorderSide(color: Color(0xffE65836)),
                   ),
                   hintStyle: const TextStyle(fontSize: 16, color: Colors.black54),
                   contentPadding: const EdgeInsets.symmetric(
@@ -93,13 +101,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
             ),
+            SizedBox(height: size.height / 35),
             SizedBox(
-              height: size.height / 35,
-            ),
-            SizedBox(
-              width: size.width/1.2,
+              width: size.width / 1.2,
               child: TextField(
-                controller: _password,
+                controller: signUpController.passwordController,
                 onTap: () {},
                 cursorColor: Colors.black54,
                 style: const TextStyle(fontWeight: FontWeight.w400),
@@ -107,7 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   alignLabelWithHint: true,
                   border: InputBorder.none,
                   labelText: "Password",
-                  labelStyle: const TextStyle(color:  Color(0xffE65836)),
+                  labelStyle: const TextStyle(color: Color(0xffE65836)),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(color: Color(0xffE65836)),
@@ -115,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintText: 'Enter your password',
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color:  Color(0xffE65836)),
+                    borderSide: const BorderSide(color: Color(0xffE65836)),
                   ),
                   hintStyle: const TextStyle(fontSize: 16, color: Colors.black54),
                   contentPadding: const EdgeInsets.symmetric(
@@ -123,13 +129,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
             ),
+            SizedBox(height: size.height / 35),
             SizedBox(
-              height: size.height / 35,
-            ),
-            SizedBox(
-              width: size.width/1.2,
+              width: size.width / 1.2,
               child: TextField(
-                controller: _password,
+                controller: signUpController.confirmPasswordController,
                 onTap: () {},
                 cursorColor: Colors.black54,
                 style: const TextStyle(fontWeight: FontWeight.w400),
@@ -137,7 +141,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   alignLabelWithHint: true,
                   border: InputBorder.none,
                   labelText: "Confirm Password",
-                  labelStyle: const TextStyle(color:  Color(0xffE65836)),
+                  labelStyle: const TextStyle(color: Color(0xffE65836)),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(color: Color(0xffE65836)),
@@ -145,7 +149,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintText: 'Enter your confirm password',
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color:  Color(0xffE65836)),
+                    borderSide: const BorderSide(color: Color(0xffE65836)),
                   ),
                   hintStyle: const TextStyle(fontSize: 16, color: Colors.black54),
                   contentPadding: const EdgeInsets.symmetric(
@@ -153,62 +157,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
             ),
-            SizedBox(
-              height: size.height / 36,
-            ),
+            SizedBox(height: size.height / 36),
             ElevatedButton(
-              onPressed: () async {
-                if (_userName.text.isEmpty) {
-                  setState(() {
-                    _error = 'Please enter your name';
-                  });
-                } else {
-                  _error = "";
-                  setState(() {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>  Navigated_Screen(),
-                        ));
-                  });
-                  SharedPreferences pref =
-                  await SharedPreferences.getInstance();
-                  pref.setString("userName", _userName.text);
-                  userName = pref.getString("userName")!;
-                  pref.setString("userEmail", _email.text);
-                  userEmail = pref.getString("userEmail")!;
-                  print(userName);
-                }
-              },
+              onPressed: () => signUpController.signUp(),
               style: ButtonStyle(
-                fixedSize: MaterialStateProperty.all(
-                    Size(size.width/1.6, size.height / 18)),
-                backgroundColor:
-                const MaterialStatePropertyAll(Color(0xff29333F)),
+                fixedSize: MaterialStateProperty.all(Size(size.width / 1.6, size.height / 18)),
+                backgroundColor: MaterialStateProperty.all(const Color(0xff29333F)),
               ),
               child: Text(
                 "Sign Up",
                 style: GoogleFonts.mukta(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-            SizedBox(
-              height: size.height / 24,
-            ),
+            Obx(() => signUpController.error.isNotEmpty
+                ? Text(
+              signUpController.error.value,
+              style: TextStyle(color: Colors.red),
+            )
+                : SizedBox.shrink()),
+            SizedBox(height: size.height / 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text("----------------"),
-                SizedBox(width: size.width/16,),
+                SizedBox(width: size.width / 16),
                 Text("Or Login with"),
-                SizedBox(width: size.width/16,),
+                SizedBox(width: size.width / 16),
                 Text("----------------"),
               ],
             ),
-            SizedBox(height: size.height/24,),
+            SizedBox(height: size.height / 24),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -217,31 +200,40 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 60,
                   width: 60,
                   decoration: BoxDecoration(
-                      color: Color(0xffFAF3EB),
-                      image: DecorationImage(image: AssetImage("assets/Images/facebook_logo.png"),fit: BoxFit.cover),
-                      borderRadius: BorderRadius.circular(12)
+                    color: Color(0xffFAF3EB),
+                    image: DecorationImage(
+                      image: AssetImage("assets/Images/facebook_logo.png"),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
                 Container(
                   height: 50,
                   width: 50,
                   decoration: BoxDecoration(
-                      color: Color(0xffFAF3EB),
-                      image: DecorationImage(image: AssetImage("assets/Images/google_logo.png"),fit: BoxFit.cover),
-                      borderRadius: BorderRadius.circular(12)
+                    color: Color(0xffFAF3EB),
+                    image: DecorationImage(
+                      image: AssetImage("assets/Images/google_logo.png"),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
                 Container(
                   height: 55,
                   width: 55,
                   decoration: BoxDecoration(
-                      color: Color(0xffFAF3EB),
-                      image: DecorationImage(image: AssetImage("assets/Images/Apple-Logo.png"),fit: BoxFit.cover),
-                      borderRadius: BorderRadius.circular(12)
+                    color: Color(0xffFAF3EB),
+                    image: DecorationImage(
+                      image: AssetImage("assets/Images/Apple-Logo.png"),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

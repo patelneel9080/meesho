@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:caferia/screens/Login%20Method/Login_method.dart';
 import 'package:caferia/screens/Navigation_Pages/navigated_screen.dart';
@@ -22,15 +23,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => CartProvider(), // Provide an instance of CartProvider
-      child: MaterialApp(
-        title: 'Musify',
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CartProvider()), // Provide an instance of CartProvider
+        // You can add more providers if needed
+      ],
+      child: GetMaterialApp(
+        title: 'Caferia',
         darkTheme: ThemeData.dark(useMaterial3: true),
         debugShowCheckedModeBanner: false,
         home: Consumer<CartProvider>(
           builder: (context, cartProvider, child) {
-            return LoginMethod(); // or any other widget that needs access to CartProvider
+            return SplashScreen(); // or any other widget that needs access to CartProvider
           },
         ),
       ),

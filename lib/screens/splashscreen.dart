@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:caferia/screens/Login%20Method/Login_method.dart';
 import 'package:flutter/material.dart';
 
@@ -61,7 +59,6 @@ class _SplashScreenState extends State<SplashScreen> {
               onTap: () {
                 setState(() {
                   _expanded = true;
-
                 });
                   Navigator.push(
                       context,
@@ -69,12 +66,10 @@ class _SplashScreenState extends State<SplashScreen> {
                         builder: (context) => LoginMethod(),
                       ));
               },
-              child: AnimatedContainer(
+              child: Container(
                 decoration: BoxDecoration(
-                    color: _expanded ? Color(0xffAA6F47) : Color(0xffAA6F47),
+                    color: Color(0xffAA6F47),
                     borderRadius: BorderRadius.circular(12)),
-                duration: Duration(seconds: 3),
-                curve: Curves.decelerate,
                 width:
                    MediaQuery.of(context).size.width / 2.5 ,
                 height:
@@ -93,7 +88,6 @@ class _SplashScreenState extends State<SplashScreen> {
           ],
         ),
       ),
-
     );
   }
 }

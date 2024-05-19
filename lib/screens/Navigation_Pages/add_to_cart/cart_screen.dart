@@ -31,41 +31,45 @@ class _CartScreenState extends State<CartScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size(size.width, size.height / 3.8),
-        child: Container(
-          width: size.width,
-          height: size.height / 4.5,
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(25),
-              bottomRight: Radius.circular(25),
-            ),
-            image: DecorationImage(
-              image: AssetImage("assets/Images/apptheme.webp"),
-              fit: BoxFit.cover,
-              opacity: .4,
-            ),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: size.width / 14,
-              ),
-              Text(
-                "My Cart",
-                style: TextStyle(
-                  color: Color(0xffFFF2E1),
-                  fontSize: 43,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
-        ),
+      // appBar: PreferredSize(
+      //   preferredSize: Size(size.width, size.height / 3.8),
+      //   child: Container(
+      //     width: size.width,
+      //     height: size.height / 4.5,
+      //     decoration: BoxDecoration(
+      //       color: Colors.black,
+      //       borderRadius: BorderRadius.only(
+      //         bottomLeft: Radius.circular(25),
+      //         bottomRight: Radius.circular(25),
+      //       ),
+      //       image: DecorationImage(
+      //         image: AssetImage("assets/Images/apptheme.webp"),
+      //         fit: BoxFit.cover,
+      //         opacity: .4,
+      //       ),
+      //     ),
+      //     child: Row(
+      //       crossAxisAlignment: CrossAxisAlignment.center,
+      //       mainAxisAlignment: MainAxisAlignment.start,
+      //       children: [
+      //         SizedBox(
+      //           width: size.width / 14,
+      //         ),
+      //         Text(
+      //           "My Cart",
+      //           style: TextStyle(
+      //             color: Color(0xffFFF2E1),
+      //             fontSize: 43,
+      //             fontWeight: FontWeight.w400,
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text("My Cart",style: TextStyle(fontWeight: FontWeight.bold),),
       ),
       body: Column(
         children: [
@@ -123,6 +127,7 @@ class _CartScreenState extends State<CartScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      SizedBox(width: size.width/32,),
                       if (_isSelectMode)
                         Checkbox(
                           value: _isSelected[index],
@@ -167,10 +172,10 @@ class _CartScreenState extends State<CartScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CircleAvatar(
-                            radius: 19,
+                            radius: 16,
                             backgroundColor: Color(0xffE65836),
                             child: IconButton(
-                              icon: Icon(Icons.remove, color: Colors.white),
+                              icon: Icon(Icons.remove, color: Colors.white,size: 16,),
                               onPressed: () {
                                 if (coffee.quantity > 1) {
                                   coffee.quantity--;
@@ -184,10 +189,10 @@ class _CartScreenState extends State<CartScreen> {
                             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                           ),
                           CircleAvatar(
-                            radius: 19,
+                            radius: 16,
                             backgroundColor: Color(0xffE65836),
                             child: IconButton(
-                              icon: Icon(Icons.add, color: Colors.white),
+                              icon: Icon(Icons.add, color: Colors.white,size: 16,),
                               onPressed: () {
                                 coffee.quantity++;
                                 cartProvider.updateCart(); // Notify listeners of change
@@ -205,38 +210,34 @@ class _CartScreenState extends State<CartScreen> {
               },
             ),
           ),
-          Divider(color: Colors.black54,),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Total Price :-"),
-                  Text(
-                    '\$${total.toStringAsFixed(2)}', // Display total price
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              SizedBox(width: 16),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Color(0xff28313E)),
-                  fixedSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.width / 1.6, MediaQuery.of(context).size.height / 18)),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Row(
+              children: [
+                Text("Total Price :-",style: TextStyle(fontSize: 16,),),
+                Spacer(),
+                Text(
+                  '\$${total.toStringAsFixed(2)}', // Display total price
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                onPressed: () {
-
-                },
-                child: Text(
-                  "Place Order",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-          Divider(color: Colors.black54,),
+          ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Color(0xff28313E)),
+              shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+              fixedSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.width / 1.1, MediaQuery.of(context).size.height / 18)),
+            ),
+            onPressed: () {
+
+            },
+            child: Text(
+              "Place Order",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          SizedBox(height: size.height/54,)
         ],
       ),
     );

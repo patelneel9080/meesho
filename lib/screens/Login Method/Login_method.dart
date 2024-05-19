@@ -53,11 +53,14 @@ class _LoginMethodState extends State<LoginMethod> {
                 padding: EdgeInsets.only(top: 150, left: 30),
                 child: Container(
                   width: size.width / 1.2,
-                  child: SegmentedTabControl(
+                  child: SegmentedTabControl(indicatorDecoration: BoxDecoration(
+                    color: Color(0xffE65836),
+                    borderRadius: BorderRadius.circular(25)
+                  ),barDecoration: BoxDecoration(borderRadius: BorderRadius.circular(25)),
                     // Customization of widget
-                    radius: const Radius.circular(25),
-                    backgroundColor: Color(0xffEFEAF4),
-                    indicatorColor: Color(0xffE65836),
+                    // radius: const Radius.circular(25),
+                    // backgroundColor: Color(0xffEFEAF4),
+                    // indicatorColor: Color(0xffE65836),
                     tabTextColor: Colors.black45,
                     selectedTabTextColor: Colors.white,
                     squeezeIntensity: 8,

@@ -297,7 +297,7 @@ class _CoffeeDetailsScreenState extends State<CoffeeDetailsScreen> with SingleTi
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
+                    SizedBox(height: size.height/54,),
                     const Text(
                       "Customize your coffee",
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
@@ -342,7 +342,7 @@ class _CoffeeDetailsScreenState extends State<CoffeeDetailsScreen> with SingleTi
                         ),
                       ],
                     ),
-                    SizedBox(height: 24),
+                    SizedBox(height: size.height/33),
                     Row(
                       children: [
                         Column(
@@ -358,7 +358,8 @@ class _CoffeeDetailsScreenState extends State<CoffeeDetailsScreen> with SingleTi
                             ),
                           ],
                         ),
-                        SizedBox(width: 16),
+                        Spacer(),
+
                         ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(Color(0xff28313E)),

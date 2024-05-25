@@ -124,6 +124,7 @@ class _HomeScreenState extends State<HomeScreen>
           height: size.height * 3,
           child: Column(
             children: [
+
               SizedBox(height: size.height / 54),
               Row(
                 children: [

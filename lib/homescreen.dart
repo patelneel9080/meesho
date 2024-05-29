@@ -392,10 +392,18 @@ class ProductCard extends StatelessWidget {
   }
 }
 
-class ProductDetailPage extends StatelessWidget {
+class ProductDetailPage extends StatefulWidget {
   final Product product;
 
   ProductDetailPage({required this.product});
+
+  @override
+  _ProductDetailPageState createState() => _ProductDetailPageState();
+}
+
+class _ProductDetailPageState extends State<ProductDetailPage> {
+  Color? selectedColor;// Variable to store the selected color
+  String? selectedSize;
 
   @override
   Widget build(BuildContext context) {
@@ -414,8 +422,7 @@ class ProductDetailPage extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(30)),
+                borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
               ),
               child: Stack(
                 children: [
@@ -424,7 +431,7 @@ class ProductDetailPage extends StatelessWidget {
                     left: 60,
                     right: 60,
                     child: Image.asset(
-                      product.imageUrl,
+                      widget.product.imageUrl,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -432,8 +439,7 @@ class ProductDetailPage extends StatelessWidget {
                     left: 16,
                     top: 16,
                     child: IconButton(
-                      icon:
-                          Icon(Icons.arrow_back, size: 32, color: Colors.white),
+                      icon: Icon(Icons.arrow_back, size: 32, color: Colors.white),
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                   ),
@@ -441,8 +447,7 @@ class ProductDetailPage extends StatelessWidget {
                     right: 16,
                     top: 16,
                     child: IconButton(
-                      icon: Icon(Icons.favorite_outline,
-                          size: 32, color: Colors.white),
+                      icon: Icon(Icons.favorite_outline, size: 32, color: Colors.white),
                       onPressed: () {
                         // Add to cart functionality
                       },
@@ -465,27 +470,19 @@ class ProductDetailPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            product.name,
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                            widget.product.name,
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                           ),
-                          Text('Classic',
-                              style:
-                                  TextStyle(fontSize: 12, color: Colors.grey)),
+                          Text('Classic', style: TextStyle(fontSize: 12, color: Colors.grey)),
                         ],
                       ),
                       Spacer(),
                       SizedBox(width: 8),
-                      Text('₹${product.price}',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black.withOpacity(0.84))),
+                      Text('₹${widget.product.price}', style: TextStyle(fontSize: 20, color: Colors.black.withOpacity(0.84))),
                     ],
                   ),
                   SizedBox(height: 16),
-                  Text('Color',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Text('Color', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -498,9 +495,7 @@ class ProductDetailPage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 16),
-                  Text('Select Size',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Text('Select Size', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -516,8 +511,7 @@ class ProductDetailPage extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.pinkAccent,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 48, vertical: 16),
+                        padding: EdgeInsets.symmetric(horizontal: 48, vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -537,7 +531,9 @@ class ProductDetailPage extends StatelessWidget {
   Widget _buildColorOption(BuildContext context, Color color) {
     return GestureDetector(
       onTap: () {
-        // Handle color selection
+        setState(() {
+          selectedColor = color; // Update selected color
+        });
       },
       child: Container(
         width: 40,
@@ -545,19 +541,31 @@ class ProductDetailPage extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: color,
+          border: selectedColor == color ? Border.all(color: Color(0xffF599A4), width: 5) : null, // Add border if color is selected
         ),
       ),
     );
   }
 
   Widget _buildSizeOption(BuildContext context, String size) {
-    return Container(
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(8),
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedSize = size; // Update selected size
+        });
+      },
+      child: Container(
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.grey),
+          // borderRadius: BorderRadius.circular(8),
+          color: selectedSize == size ? Color(0xffF599A4) : Colors.transparent, // Highlight selected size
+        ),
+        child: Text(size, style: TextStyle(fontSize: 16,color: selectedSize == size ? Colors.white : Colors.black)),
       ),
-      child: Text(size, style: TextStyle(fontSize: 16)),
     );
   }
+
 }
+

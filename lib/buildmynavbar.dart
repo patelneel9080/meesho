@@ -18,7 +18,7 @@ class _BuildMyNavBarState extends State<BuildMyNavBar> {
       child: Container(
         height: 56,
         alignment: Alignment.center,
-        margin: EdgeInsets.symmetric(horizontal: 24),
+        margin: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(.8),
           borderRadius: BorderRadius.all(Radius.circular(24)),

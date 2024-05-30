@@ -541,7 +541,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: color,
-          border: selectedColor == color ? Border.all(color: Color(0xffF599A4), width: 5) : null, // Add border if color is selected
+          border: selectedColor == color ? Border.all(color: Color(0xffF599A4), width: 4) : null, // Add border if color is selected
         ),
       ),
     );
